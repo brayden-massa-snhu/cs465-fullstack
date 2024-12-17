@@ -1,12 +1,17 @@
 const router = require("express").Router();
 
 // Import controllers
-const { getTrips, getTripByCode } = require("../controllers/trips");
-
-// GET all trips
-router.route("/trips").get(getTrips);
+const {
+  getTrips,
+  getTripByCode,
+  addTrip,
+  updateTrip,
+} = require("../controllers/trips");
 
 // Define route for our trips endpoint
-router.route("/trips/:tripCode").get(getTripByCode);
+router.route("/trips").get(getTrips).post(addTrip);
+
+// GET Method routes getTripByCode
+router.route("/trips/:tripCode").get(getTripByCode).put(updateTrip);
 
 module.exports = router;
